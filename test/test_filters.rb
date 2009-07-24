@@ -37,5 +37,10 @@ class TestFilters < Test::Unit::TestCase
       assert_equal "AT&amp;T", @filter.xml_escape("AT&T")
       assert_equal "&lt;code&gt;command &amp;lt;filename&amp;gt;&lt;/code&gt;", @filter.xml_escape("<code>command &lt;filename&gt;</code>")
     end
+
+    should "absolutize urls" do
+      assert_equal '<a href="http://recursivecreative.com/12/06/2009/example-post">Example Post</a>', @filter.absolutize_urls('<a href="/12/06/2009/example-post">Example Post</a>', 'http://recursivecreative.com')
+      assert_equal '<img src="http://recursivecreative.com/images/hello-world.png" />', @filter.absolutize_urls('<img src="/images/hello-world.png" />', 'http://recursivecreative.com')
+    end
   end
 end
