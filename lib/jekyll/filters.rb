@@ -44,7 +44,7 @@ module Jekyll
     end
 
     def absolutize_urls(input, base)
-      input.gsub(/(href|src)(\s*=\s*)(["'])(.*?)\3/) { $1 + $2 + $3 + base + $4 + $3 }
+      input.gsub(/(href|src)(\s*=\s*)(["'])(\/.*?)\3/) { $1 + $2 + $3 + base + $4 + $3 }
     end
   end
 end
